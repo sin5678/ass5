@@ -1,0 +1,19 @@
+CC=g++
+CFLAGS=-c -DLINUX=1 -ggdb3 -O0 -std=c++11
+LDFLAGS=
+LIBS=  -lpthread
+SOURCES= main.cpp rbuffer.cpp svr.cpp 
+OBJECTS=$(SOURCES:.cpp=.o)
+EXECUTABLE=ass5
+ 
+all: $(SOURCES) $(EXECUTABLE)
+	
+$(EXECUTABLE): $(OBJECTS) 
+	$(CC) $(LDFLAGS) $(OBJECTS) $(LIBS) -o $@
+ 
+.cpp.o:
+	$(CC) $(CFLAGS) $< -o $@
+ 
+clean:
+	rm -rf $(OBJECTS)
+	rm -rf $(EXECUTABLE)
