@@ -129,8 +129,8 @@ bool svr::start(int port, on_msg func)
 	}
 
 	listen(m_svr_fd, 5);
-	long on = 1L;
-	if (ioctl(m_svr_fd, (int)FIONBIO, (char *)&on))
+	unsigned long on = 1L;
+	if (ioctl(m_svr_fd, (unsigned long)FIONBIO, (char *)&on))
 	{
 		dbg_msg("ioctl FIONBIO call failed\n");
 	}
@@ -395,8 +395,8 @@ ClientContext * svr::connect(const char *host, int port)
 
 	//设置 connect 的 socket 为非阻塞
 
-	long on = 1L;
-	if (ioctl(client_socket, (int)FIONBIO, (char *)&on))
+	unsigned long on = 1L;
+	if (ioctl(client_socket, (unsigned long)FIONBIO, (char *)&on))
 	{
 		dbg_msg("ioctl FIONBIO call failed\n");
 	}
@@ -436,8 +436,8 @@ bool svr::onAccept()
 		return false;
 	}
 	ClientContext *ctx = (ClientContext *)malloc(sizeof(ClientContext));
-	long on = 1L;
-	if (ioctl(fd, (int)FIONBIO, (char *)&on))
+	unsigned long on = 1L;
+	if (ioctl(fd, (unsigned long)FIONBIO, (char *)&on))
 	{
 		dbg_msg("ioctl FIONBIO call failed\n");
 	}
